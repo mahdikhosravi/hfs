@@ -1,0 +1,87 @@
+{% load staticfiles %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- loading Bootsrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- my css -->
+    <link href="{% static 'css/itemPage.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mainPage.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/productsPage.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/addPage.css' %}" rel="stylesheet"/>
+
+    <link rel="shortcut icon" href="{% static 'images/icon.ico' %}">
+
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/mainPage.js' %}"></script>
+    <script src="{% static 'js/productsPage.js' %}"></script>
+    <script src="{% static 'js/itemPage.js' %}"></script>
+    <script src="{% static 'js/addPage.js' %}"></script>
+</head>
+
+<body>
+<div class="container">
+    <section class="row">
+        <!-- navebar -->
+        <section class="row">
+            <nav class="navbar navbar-default" role="navigation" id="navigationbar">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="mainPage.html">فروشگاه</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <!-- categories -->
+                    <ul class="nav navbar-nav navbar-right" id="navbar">
+                        <li class="active">
+                            <a href="mainPage.html"> صفحه اصلی </a>
+                        </li>
+                    </ul>
+                    <!-- /categories -->
+
+                    <!-- search -->
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">همه محصولات<b class="caret"></b></a>
+                            <ul class="dropdown-menu" id="search-dropdown">
+
+                            </ul>
+                        </li>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="جستجو" id="search-text">
+                            </div>
+                            <button class="btn btn-default" id="search-button">
+                                جستجو
+                            </button>
+                        </form>
+                    </ul>
+                    <!-- /search -->
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </section>
+        <!-- /navbar -->
+
+        {% block content %}
+    </section>
+</div>
+</body>
+</html>

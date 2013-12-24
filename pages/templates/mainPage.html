@@ -1,0 +1,47 @@
+{% extends "baseCart.html" %}
+{% load staticfiles %}
+
+{% block page-content %}
+    <section class="row col-xs-12 col-md-8" id="slideshow">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="itemPage.html"> <img src="{{ link1 }}" alt=""> <div class="carousel-caption"></div> </a>
+                </div>
+
+                <div class="item">
+                    <a href="itemPage.html"> <img src="{{ link2 }}" alt=""> <div class="carousel-caption"></div> </a>
+                </div>
+
+                <div class="item">
+                    <a href="itemPage.html"> <img src="{{ link3 }}" alt=""> <div class="carousel-caption"></div> </a>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a>
+        </div>
+    </section>
+
+    <div class="row" >
+        <div class="row col-md-12" id="recommended">
+            <h1 dir="rtl">پیشنهاد ما</h1>
+
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="row col-md-12" id="popular">
+            <h1 dir="rtl">محبوب‌ترین‌ها</h1>
+        </div>
+    </div>
+{% endblock %}

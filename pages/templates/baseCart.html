@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-xs-12 col-md-4" id= "sabadContainer">
+        <div id="inf">
+            <div id="totalAmount">
+                :تعداد کالاها
+            </div>
+            <div id="totalPrice">
+                :قیمت کل
+            </div>
+        </div>
+
+        <div id="sabad" class="row">
+            <table id="productTable" class="col-md-12 col-xs-12 row">
+                <col class="col-md-3 col-xs-3" />
+                <col class="col-md-3 col-xs-3" />
+                <col class="col-md-3 col-xs-3" />
+                <col class="col-md-3 col-xs-3" />
+            </table>
+        </div>
+    </div>
+
+    {% block page-content %}
+    {% endblock %}
+{% endblock %}

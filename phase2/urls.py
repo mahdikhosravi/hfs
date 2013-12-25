@@ -10,5 +10,7 @@ urlpatterns = patterns('',
      url(r'^$', 'sale.views.test1'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^main-page/$', 'pages.views.viewMainPage'),
+
     url(r'^admin/', include(admin.site.urls)),
 )

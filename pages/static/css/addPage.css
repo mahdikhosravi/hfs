@@ -1,0 +1,21 @@
+.row {
+	margin: 0;
+}
+
+#man {
+	border: solid;
+	background-color: #f8f8f8;
+	border-color: #F1F1F1;
+	text-align: center;
+}
+
+#pic {
+	text-align: center;
+	border: solid;
+	background-color: #f8f8f8;
+	border-color: #F1F1F1;
+}
+
+.myform {
+	text-align: center;
+}

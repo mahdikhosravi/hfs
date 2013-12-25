@@ -1,0 +1,95 @@
+.row {
+	margin: 0;
+}
+
+#proDiv {
+	background-color: #f8f8f8;
+}
+
+#proDiv div img {
+
+	width: 100px;
+	height: 100px;
+}
+
+.caption {
+	text-align: center;
+}
+
+.productDiv {
+	border-style: solid;
+	border-color: #f1f1f1;
+	text-align: center;
+	padding: 10px;
+}
+
+#container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#pagination {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#sabad {
+	border-style: solid;
+	border-color: #f1f1f1;
+	background-color: #f8f8f8;
+	max-height: 350px;
+	overflow-y: scroll;
+}
+
+#inf {
+	text-align: right;
+	height: 55px;
+}
+
+#inf * {
+	display: inline-block;
+	width: 50%;
+	float: right;
+	border-style: solid;
+	/*margin-right: 10%;*/
+}
+
+#productTable td {
+	text-align: center;
+	/*margin-right: 20px;  */
+}
+
+#productTable {
+	float: right;
+}
+
+.remove {
+	height: 30px;
+	width: 30px;
+}
+
+.picpic {
+	height: 50px;
+	width: 50px;
+}
+
+#items-data {
+	height: 100px;
+}
+
+#totalAmount {
+	border-style: solid;
+	border-color: #f1f1f1;
+	background-color: #f8f8f8;
+}
+
+#totalPrice {
+	border-style: solid;
+	border-color: #f1f1f1;
+	background-color: #f8f8f8;
+}
+
+#title-div{
+	text-align: center;
+}

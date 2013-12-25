@@ -1,0 +1,21 @@
+.row{
+	margin: 0;
+}
+
+#carousel-example-generic{
+	border: solid;
+	background-color: #f8f8f8;
+	border-color: #F1F1F1;
+	max-height: 410px;
+}
+
+#recommended div img{
+	width: 100px;
+	height: 100px;
+}
+
+#popular div img{
+	width: 100px;
+	height: 100px;
+}
+

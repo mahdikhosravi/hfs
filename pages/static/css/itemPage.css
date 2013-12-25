@@ -1,0 +1,46 @@
+.row {
+	margin: 0;
+}
+
+#picture {
+	text-align: center;
+	border-style: solid;
+	border-color: #f1f1f1;
+	background-color: #f8f8f8;
+}
+
+#info {
+	text-align: right;
+	border-style: solid;
+	border-color: #f1f1f1;
+	background-color: #f8f8f8;
+}
+
+.comment {
+	background-color: #f8f8f8;
+	text-align: right;
+	margin-top: 10px;
+	border-style: solid;
+	border-color: #f1f1f1;
+}
+
+#comments {
+	text-align: center;
+}
+
+#comments2 {
+	text-align: center;
+	margin-top: 10px;
+}
+
+#comments2 textarea {
+	text-align: right;
+}
+
+#textArea {
+	text-align: center;
+	border-style: solid;
+	border-color: #f1f1f1;
+	background-color: #f8f8f8;
+}
+

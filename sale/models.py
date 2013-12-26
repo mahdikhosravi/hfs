@@ -13,6 +13,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    # def save(self, *args, **kwargs(*args, **kwargs) # Call the "real" save() method.
 
     def clean(self):
         super(Category, self).clean()
@@ -21,6 +22,8 @@ class Category(models.Model):
             # print('khodesh' + self.name + '  parent = ' + a.name)
             if not a.parent is None:
                 raise ValidationError("Parent should be one of the main Categories!! ")
+
+
 
 from datetime import datetime
 

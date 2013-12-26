@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        {% block title %}{% endblock %}
+        {{ title }}
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,6 +50,28 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!-- categories -->
                     <ul class="nav navbar-nav navbar-right" id="navbar">
+                        {% for cat in categories %}
+                            {% if not cat.parent %}
+                                <li id="cat{{ cat.id }}" class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        {{ cat.name }}
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        {% for child in categories %}
+                                            {% if child.parent == cat.id %}
+                                                <li id="cat{{ child.id }}" class="dropdown">
+                                                    <a href="./productsPage.html?cat='{{ child.id }}'">
+                                                        {{ child.name }}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
                         <li class="active">
                             <a href="mainPage.html"> صفحه اصلی </a>
                         </li>
@@ -61,7 +83,17 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">همه محصولات<b class="caret"></b></a>
                             <ul class="dropdown-menu" id="search-dropdown">
-
+                                {% for cat in categories %}
+                                    {% if not cat.parent %}
+                                        <li><a class="search-dropdown" href="#">{{ cat.name }}</a></li>
+                                        {% for child in categories %}
+                                            {% if child.parent == cat.id %}
+                                                <li><a class="search-dropdown" href="#"> {{ child.name }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <li class="divider"></li>
+                                    {% endif %}
+                                {% endfor %}
                             </ul>
                         </li>
                         <form class="navbar-form navbar-left" role="search">

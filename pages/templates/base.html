@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        {% block title %}{% endblock %}
+        {{ title }}
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,6 +50,23 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!-- categories -->
                     <ul class="nav navbar-nav navbar-right" id="navbar">
+                        {% for cat in categories %}
+                            {% if cat.chils.length == 0 %}
+                                <li id="cat{{ cat.id }}">
+                                    <a href="./productsPage.html?cat='{{ cat.id }}'">
+                                        {{ cat.name }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <ul id="cat{{ cat.id }}">
+                                    <a href="./productPage.html?cat='{{ cat.id }}'">
+                                        {{ cat.name }}
+                                    </a>
+                                    {{ cat.writeChilds }}
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+
                         <li class="active">
                             <a href="mainPage.html"> صفحه اصلی </a>
                         </li>

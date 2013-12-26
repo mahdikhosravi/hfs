@@ -12,4 +12,6 @@ urlpatterns = patterns('',
 
     url(r'^main-page/$', 'pages.views.viewMainPage'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^category/(?P<cat>\d+)$', 'pages.views.viewProductPage', name = 'productsPage'),
+    url(r'^search/$', 'pages.views.viewSearchPage', name = 'searchPage'),
 )

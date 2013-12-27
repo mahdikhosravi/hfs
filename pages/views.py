@@ -27,6 +27,8 @@ trans1 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'ti
 trans2 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
 trans = [trans0, trans1, trans2]
 
+pro = {'name': 'محصول فرضی', 'price': '1000', 'time': '2013-10-09T15:38:00', 'category': '3', 'number': '10', 'others': 'چی بگم دیگه؟'}
+
 def viewMainPage(request):
     cats = list(Category.objects.all())
     li = list(Product.objects.all().reverse())
@@ -70,4 +72,4 @@ def viewSearchPage(request, ):
 
 def viewManagementPage(request):
     cats = list(Category.objects.all())
-    return render(request, 'editDetailPage.html', {'categories': cats, 'title': 'ManagementPage'})
+    return render(request, 'editDetailPage.html', {'categories': cats, 'title': 'ManagementPage', 'product': pro})

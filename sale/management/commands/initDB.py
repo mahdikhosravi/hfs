@@ -6,25 +6,25 @@ class Command(BaseCommand):
     def handle(self , *args , **kwargs):
         print('salam')
 
-        c1 = Category(name = 'tanz')
-        c1.save()
-
-        c2 = Category(name='jeddi')
+        c2 = Category(name = 'فیلم و سریال')
         c2.save()
 
-        c3 = Category(name='jeddi1' , parent = c2)
+        c1 = Category(name='کتاب')
+        c1.save()
+
+        c3 = Category(name='سینمایی' , parent = c2)
         c3.save()
 
-        c4 = Category(name='jeddi2' , parent = c2)
+        c4 = Category(name='کارتون' , parent = c2)
         c4.save()
 
-        c5 = Category(name='jeddi3' , parent = c2)
+        c5 = Category(name='سریال' , parent = c2)
         c5.save()
 
-        c6 = Category(name='tanz1' , parent = c1)
+        c6 = Category(name='رمان' , parent = c1)
         c6.save()
 
-        c7 = Category(name='tenz2' , parent = c1)
+        c7 = Category(name='تاریخی' , parent = c1)
         c7.save()
 
         p1 = Product(name='film1' , cat = c1 , availability = True , count=300, purchased = 4 )

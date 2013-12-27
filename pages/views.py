@@ -20,7 +20,7 @@ def viewMainPage(request):
     li = list(Product.objects.all().reverse())
     bestSellers = li[:6]
     ourRecom = li[6:12]
-    return render(request, 'mainPage.html', {'categories': cats, 'title': 'MainPage' , 'bestSellers' : bestSellers , 'ourRecom':ourRecom})
+    return render(request, 'mainPage.html', {'categories': cats, 'title': 'MainPage', 'RecommandProducts': ourRecom, 'BestProducts': bestSellers})
 
 def jsonResponse(dic):
     js = json.dumps(dic)
@@ -43,17 +43,14 @@ def viewProductPage(request, cat):
     for rr in pros:
         print(rr.name)
     if request.is_ajax():
-        print('sending the json response')
         return jsonResponse({'products' : pros})
     else:
-        print('rendering the page')
         return render(request, 'productPage.html', {'categories': cc, 'title': 'ProductPage'})
 
 
 
 
-def viewSearchPage(request, str ):
-    print('searching ' + str)
+def viewSearchPage(request, ):
     cats = list(Category.objects.all())
     return render(request, 'productPage.html', {'categories': cats, 'title': 'SearchResultPage'})
 

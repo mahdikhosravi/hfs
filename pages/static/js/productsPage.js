@@ -62,7 +62,7 @@ function showPage(num) {
 
 function browse(page) {
 	pageNum = page;
-	var url = "http://webproject.roohy.me/ajax/1/89102674/product/list";
+	var url = ""; //http://webproject.roohy.me/ajax/1/89102674/product/list
 	var ajaxData = {
 
 		"category" : category,
@@ -73,7 +73,7 @@ function browse(page) {
 
 	$.ajax({
 		url : url,
-		type : 'post',
+		type : 'get',
 		dataType : 'json',
 		data : ajaxData,
 		success : function(data, status, xhr) {

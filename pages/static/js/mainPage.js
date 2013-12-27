@@ -1,5 +1,3 @@
-var mapArray = [];
-
 function recommended_popularProducts() {
 	// console.log("asldkjfasldkjaslif");
 	var url = "http://webproject.roohy.me/ajax/1/89102674/product/list";
@@ -40,10 +38,10 @@ function recommended_popularProducts() {
 					var caption = document.createElement("div");
 					$(caption).addClass("caption");
 					caption.id = "items-data";
-					caption.innerHTML = "???: " + products[i].name + " <br/> " + "????: " + products[i].price;
+					caption.innerHTML = "نام:" + products[i].name + " <br/> " + "قیمت:" + products[i].price;
 					$(caption).appendTo($(mydiv));
 
-					$("<button class='buying btn btn-success col-md-12 col-xs-12'> ???? </button>").appendTo($(mydiv)).click(function(event) {
+					$("<button class='buying btn btn-success col-md-12 col-xs-12'> خرید </button>").appendTo($(mydiv)).click(function(event) {
 						add_remove(event.target._id, true);
 					}).get(0)._id = products[i].id;
 					// p._id = products[i].id ;
@@ -55,7 +53,7 @@ function recommended_popularProducts() {
 				}
 
 			}
-		},
+		}
 	});
 
 }
@@ -66,54 +64,5 @@ $(function() {
         $('#search-text').val(($(e.target).clone()).html() + ': ');
     });
 
-    //set search button function
-	$('#search-button').click(function(e) {
-		search_click(e);
-	});
-
 	recommended_popularProducts();
 });
-
-function search_click(e) {
-	var textValue = $('#search-text').val();
-		var cat="", name="";
-		if (textValue.split(':').length > 1) {
-			cat = textValue.split(':')[0];
-			name = textValue.split(':')[1];
-		} else {
-			name = textValue;
-		}
-
-
-		var ajaxData = {
-			pageSize : 15,
-		};
-
-		if(cat!="")
-			ajaxData.category = mapArray[cat];
-		else
-			ajaxData.category = "";
-			ajaxData.search = name;
-
-		window.location = 'productsPage.html?cat=' + ajaxData.category + '&search=' + ajaxData.search;
-		
-
-		e.preventDefault();
-
-	var ajaxData = {
-		pageSize : 15,
-	};
-
-	if (cat != "")
-		ajaxData.category = mapArray[cat];
-	else
-		ajaxData.category = "";
-	ajaxData.search = name;
-
-	window.location = 'productsPage.html?cat=' + ajaxData.category + '&search=' + ajaxData.search;
-
-
-	e.preventDefault();
-
-}
-

@@ -8,12 +8,24 @@
         <div class="col-md-6 col-xs-12 row" id="man">
             <input type="text" placeholder="نام محصول" id="nameSelector" class="col-md-12 col-xs-12 myform"/>
             <br>
-            <input type="text" placeholder="قیمت محصول" id="gheymatSelector" class="col-md-12 col-xs-12 myform"/>
+            <input type="number" placeholder="قیمت محصول" id="gheymatSelector" class="col-md-12 col-xs-12 myform"/>
+            <br>
+            <input type="datetime-local" class="col-md-12 col-xs-12 myform"/>
             <br>
             <select id="catagorySelector" class="col-md-12 col-xs-12 myform">
                 <option value="dif">
                     دسته‌بندی
                 </option>
+
+                {% for category in categories %}
+                    {% if category.parent %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endif %}
+                {% endfor %}
+                <br>
+                <input type="number" class="col-md-12 col-xs-12 myform" placeholder="تعداد موجودی">
+                <br>
+                <textarea class="col-md-12 col-xs-12 myform text-info" placeholder="توضیحات" rows="10" dir="rtl"></textarea>
             </select>
 
             <form id="form1" method="post" action="http://webproject.roohy.me/ajax/1/89102674/product/uploadimage">

@@ -70,4 +70,4 @@ def viewSearchPage(request, ):
 
 def viewManagementPage(request):
     cats = list(Category.objects.all())
-    return render(request, 'managementPage.html', {'categories': cats, 'title': 'ManagementPage'})
+    return render(request, 'editDetailPage.html', {'categories': cats, 'title': 'ManagementPage'})

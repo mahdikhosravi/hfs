@@ -38,15 +38,19 @@ def jsonResponse(dic):
 
 
 def viewProductPage(request, cat):
+    print('inja oomad ba cat = ' + cat)
     cc = list(Category.objects.all())
     myCat = Category.objects.get(id=cat)
     pros = []
     if myCat.parent_id is None: # khodesh babae
-        cats = Category.objects.get(parent_id = myCat.id)
+        cats = Category.objects.all().filter(parent_id = myCat.id)
         for c in cats:
-            pros = pros + list(Product.objects.get(cat_id=c.id))
+            pros = pros + list(Product.objects.all().filter(cat_id=c.id))
     else:
-        pros = list(Product.objects.get(cat_id=myCat.id))
+        pros = list(Product.objects.all().filter(cat_id=myCat.id))
+    print('pros haye nahayi ina shodan: ')
+    for rr in pros:
+        print(rr.name)
     if request.is_ajax():
         return jsonResponse({'products' : pros})
     else:

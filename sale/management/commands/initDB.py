@@ -27,10 +27,10 @@ class Command(BaseCommand):
         c7 = Category(name='تاریخی' , parent = c1)
         c7.save()
 
-        p1 = Product(name='film1' , cat = c1 , availability = True , count=300, purchased = 4 )
+        p1 = Product(name='film1' , cat = c3 , availability = True , count=300, purchased = 4 )
         p1.save()
 
-        p2 = Product(name='film2' , cat = c2 ,  purchased = 8  )
+        p2 = Product(name='film2' , cat = c4 ,  purchased = 8  )
         p2.save()
 
         p3 = Product(name='film3' , cat = c3 ,  purchased = 5 )

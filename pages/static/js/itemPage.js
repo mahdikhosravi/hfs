@@ -25,7 +25,7 @@ function loadComments() {
 			} else {
 				comms = data.commentList;
 				for (var i in comms) {
-					console.log(" i = " + i);
+//					console.log(" i = " + i);
 					var message = comms[i].message;
 					var name = comms[i].name;
 

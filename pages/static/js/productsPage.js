@@ -70,8 +70,9 @@ function browse(page) {
 		"page" : page,
 		"pageSize" : 12
 	};
-
+    console.log('mikham ajax bezanam ')
 	$.ajax({
+
 		url : url,
 		type : 'get',
 		dataType : 'json',
@@ -81,7 +82,7 @@ function browse(page) {
 				// Request error
 				console.log("error");
 			} else {
-				//	console.log("success");
+					console.log("successssssssssssssssssssss");
 				var products = data.productList;
 
 				if (data.totalResults > 12)

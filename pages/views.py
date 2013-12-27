@@ -1,4 +1,6 @@
 import json
+from django.core.serializers import serialize
+from django.core.serializers.json import Serializer
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
@@ -29,35 +31,61 @@ trans = [trans0, trans1, trans2]
 
 def viewMainPage(request):
     cats = list(Category.objects.all())
-    li = list(Product.objects.all().reverse())
+    li = list(Product.objects.all())
     bestSellers = li[:6]
     ourRecom = li[6:12]
     return render(request, 'mainPage.html', {'categories': cats, 'title': 'MainPage', 'RecommandProducts': ourRecom, 'BestProducts': bestSellers})
 
 def jsonResponse(dic):
-    js = json.dumps(dic)
+    print('testttt ')
+    print('ghable innnnn' + type(dic))
+    # default=encode_b)
+    js = json.dumps(dic )
+    jjj = HttpResponse(js, mimetype="application/json")
+    print('after jjj pleaaaaaaaaaaaaaase')
     return HttpResponse(js, mimetype="application/json")
 
 
 
 def viewProductPage(request, cat):
-    print('inja oomad ba cat = ' + cat)
     cc = list(Category.objects.all())
-    myCat = Category.objects.get(id=cat)
-    pros = []
-    if myCat.parent_id is None: # khodesh babae
-        cats = Category.objects.all().filter(parent_id = myCat.id)
-        for c in cats:
-            pros = pros + list(Product.objects.all().filter(cat_id=c.id))
-    else:
-        pros = list(Product.objects.all().filter(cat_id=myCat.id))
-    print('pros haye nahayi ina shodan: ')
-    for rr in pros:
-        print(rr.name)
+    print('inja oomad ba cat = ' + cat)
     if request.is_ajax():
-        return jsonResponse({'products' : pros})
+        print('responding ajax request...')
+        myCat = Category.objects.get(id=cat)
+        pros = []
+        if myCat.parent_id is None: # khodesh babae
+            cats = Category.objects.all().filter(parent_id = myCat.id)
+            for c in cats:
+                pros = pros + list(Product.objects.all().filter(cat_id=c.id))
+        else:
+            pros = list(Product.objects.all().filter(cat_id=myCat.id))
+        print('pros haye nahayi ina shodan: ')
+        for rr in pros:
+            print(rr.name)
+
+        set = 3 ;
+        seti = set + 1 ;
+        print('set = ' + str(seti) )
+
+
+        pageSize = int(request.GET['pageSize'])
+        page = int(request.GET['page'])-1
+        print('page size === ' + str(pageSize) + "page === " + str(page))
+
+        pros = pros[page * pageSize:(page + 1) * pageSize]
+        results = [ob.as_json() for ob in pros]
+
+        js = json.dumps({'productList': results})
+        return HttpResponse(js, mimetype="application/json")
+
     else:
+        print('addi boode daram page render mikonam ')
         return render(request, 'productPage.html', {'categories': cc, 'title': 'ProductPage'})
+
+class test(Serializer):
+    aa = 1 ;
+    bb = 3 ;
 
 def viewTransactionsPage(request):
     cats = list(Category.objects.all())

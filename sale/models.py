@@ -1,13 +1,15 @@
 from dis import _format_code_info
 from django.core.exceptions import ValidationError
+from django.core.serializers import serialize, json
 from django.db import models
-
+from json import JSONEncoder
 # Create your models here.
 from django.utils import autoreload
 
 
-class Category(models.Model):
+class Category(models.Model , JSONEncoder):
     parent = models.ForeignKey('self' , null=True)
+
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -38,12 +40,21 @@ class Product(models.Model):
     description = models.TextField(null=True)
     purchased = models.PositiveIntegerField(default=0)
 
+    def as_json(self):
+        return dict(
+            price = self.price,
+            name = self.name,
+            count = self.count,
+            picURL = self.picture
+        )
 
  #   CREATE FULLTEXT INDEX fulltext_article_title_text
   #  ON fulltext_article (title, text);
 
     class Meta:
-        ordering = ('purchased',)
+        ordering = ('-purchased',)
+        verbose_name = 'محصول'
+        verbose_name_plural = 'محصولات'
 
     def __str__(self):
         return self.name

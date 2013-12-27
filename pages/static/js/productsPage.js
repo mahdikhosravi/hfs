@@ -65,8 +65,6 @@ function browse(page) {
 	var url = ""; //http://webproject.roohy.me/ajax/1/89102674/product/list
 	var ajaxData = {
 
-		"category" : category,
-		"search" : search,
 		"page" : page,
 		"pageSize" : 12
 	};
@@ -82,8 +80,9 @@ function browse(page) {
 				// Request error
 				console.log("error");
 			} else {
-					console.log("successssssssssssssssssssss");
+				console.log("successssssssssssssssssssss");
 				var products = data.productList;
+                console.log("in chant tast" + products.length );
 
 				if (data.totalResults > 12)
 					expand((Math.floor((data.totalResults - 1) / 12) + 1));
@@ -131,6 +130,9 @@ function browse(page) {
 			}
 		},
 		// ...
+        error: function(data , status , xhr){
+          console.log('gand khord keeeeeeee')
+        },
 	});
 
 }

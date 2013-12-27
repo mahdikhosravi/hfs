@@ -63,6 +63,4 @@ $(function() {
     $('.search-dropdown').click(function(e) {
         $('#search-text').val(($(e.target).clone()).html() + ': ');
     });
-
-	recommended_popularProducts();
 });

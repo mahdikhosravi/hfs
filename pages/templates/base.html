@@ -51,7 +51,7 @@
                     <!-- categories -->
                     <ul class="nav navbar-nav navbar-right" id="navbar">
                         {% for cat in categories %}
-                            {% if not cat.parent %}
+                            {% if not cat.parent_id %}
                                 <li id="cat{{ cat.id }}" class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                         {{ cat.name }}
@@ -59,11 +59,12 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         {% for child in categories %}
-                                            {% if child.parent == cat.id %}
+                                            {% if child.parent_id == cat.id %}
                                                 <li id="cat{{ child.id }}" class="dropdown">
                                                     <a href="{% url 'productsPage' cat=child.id  %}"> <!--"./..productsPage.html?cat='{{ child.id }}'"-->
                                                         {{ child.name }}
                                                     </a>
+
                                                 </li>
                                             {% endif %}
                                         {% endfor %}

@@ -34,13 +34,41 @@
     <div class="row" >
         <div class="row col-md-12" id="recommended">
             <h1 dir="rtl">پیشنهاد ما</h1>
+            {% for product in RecommandProducts %}
+                <div class="productDiv col-md-2 col-sm-6 col-xs-6">
+                    <a href="{{ product.url }}" >
+                        <img src="{{ product.imgurl }}">
+                    </a>
+                    <div class="caption">
+                        نام: {{ product.name }}
+                        <br>
+                        قیمت: {{ product.price }}
+                    </div>
 
+                    <button class='buying btn btn-success col-md-12 col-xs-12'>خرید </button>
+                </div>
+            {% endfor %}
         </div>
     </div>
 
     <div class="row" >
         <div class="row col-md-12" id="popular">
             <h1 dir="rtl">محبوب‌ترین‌ها</h1>
+
+            {% for product in BestProducts %}
+                <div class="productDiv col-md-2 col-sm-6 col-xs-6">
+                    <a href="{{ product.url }}" >
+                        <img src="{{ product.imgurl }}">
+                    </a>
+                    <div class="caption">
+                        نام: {{ product.name }}
+                        <br>
+                        قیمت: {{ product.price }}
+                    </div>
+
+                    <button class='buying btn btn-success col-md-12 col-xs-12'>خرید </button>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

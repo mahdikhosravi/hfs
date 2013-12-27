@@ -38,6 +38,7 @@ class Product(models.Model):
     description = models.TextField(null=True)
     purchased = models.PositiveIntegerField(default=0)
 
+
  #   CREATE FULLTEXT INDEX fulltext_article_title_text
   #  ON fulltext_article (title, text);
 

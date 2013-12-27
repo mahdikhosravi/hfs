@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 col-xs-12" id="pic">
+            <img id="aks"/>
+        </div>
+        <div class="col-md-6 col-xs-12 row" id="man">
+            <input type="text" placeholder="نام محصول" id="nameSelector" class="col-md-12 col-xs-12 myform" value="{{ product.name }}"/>
+            <br>
+            <input type="number" placeholder="قیمت محصول" id="gheymatSelector" class="col-md-12 col-xs-12 myform" value="{{ product.price }}"/>
+            <br>
+            <input type="datetime-local" class="col-md-12 col-xs-12 myform" value="{{ product.time }}"/>
+            <br>
+            <select id="catagorySelector" class="col-md-12 col-xs-12 myform">
+                <option value="dif">
+                    دسته‌بندی
+                </option>
+
+                {% for category in categories %}
+                    {% if category.parent %}
+                        <option value="{{ category.id }}" selected="{% if category.id == product.category %} selected {% endif %}">{{ category.name }}</option>
+                    {% endif %}
+                {% endfor %}
+                <br>
+                <input type="number" class="col-md-12 col-xs-12 myform" placeholder="تعداد موجودی"  value="{{ product.number }}">
+                <br>
+                <textarea class="col-md-12 col-xs-12 myform text-info" placeholder="توضیحات" rows="10" dir="rtl">{{ product.others }}</textarea>
+            </select>
+
+            <form id="form1" method="post" action="http://webproject.roohy.me/ajax/1/89102674/product/uploadimage">
+                <input type="file" name="image" class="col-md-12 col-xs-12 myform"/>
+                <br>
+                <input type="submit" class="col-md-12 col-xs-12 myform btn btn-primary" value="ثبت تصویر"/>
+                <br>
+                <button id="addPro" class="col-md-12 col-xs-12 myform btn btn-success">
+                    ثبت محصول
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -29,6 +29,8 @@ trans1 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'ti
 trans2 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
 trans = [trans0, trans1, trans2]
 
+pro = {'name': 'محصول فرضی', 'price': '1000', 'time': '2013-10-09T15:38:00', 'category': '3', 'number': '10', 'others': 'چی بگم دیگه؟'}
+
 def viewMainPage(request):
     cats = list(Category.objects.all())
     li = list(Product.objects.all())
@@ -37,12 +39,7 @@ def viewMainPage(request):
     return render(request, 'mainPage.html', {'categories': cats, 'title': 'MainPage', 'RecommandProducts': ourRecom, 'BestProducts': bestSellers})
 
 def jsonResponse(dic):
-    print('testttt ')
-    print('ghable innnnn' + type(dic))
-    # default=encode_b)
-    js = json.dumps(dic )
-    jjj = HttpResponse(js, mimetype="application/json")
-    print('after jjj pleaaaaaaaaaaaaaase')
+    js = json.dumps(dic)
     return HttpResponse(js, mimetype="application/json")
 
 
@@ -82,11 +79,6 @@ def viewProductPage(request, cat):
     else:
         print('addi boode daram page render mikonam ')
         return render(request, 'productPage.html', {'categories': cc, 'title': 'ProductPage'})
-
-class test(Serializer):
-    aa = 1 ;
-    bb = 3 ;
-
 def viewTransactionsPage(request):
     cats = list(Category.objects.all())
     return render(request, 'transactionsPage.html', {'categories': cats, 'transactions': trans,'title': 'TransactionsPage'})
@@ -98,4 +90,4 @@ def viewSearchPage(request, ):
 
 def viewManagementPage(request):
     cats = list(Category.objects.all())
-    return render(request, 'managementPage.html', {'categories': cats, 'title': 'ManagementPage'})
+    return render(request, 'editDetailPage.html', {'categories': cats, 'title': 'ManagementPage', 'product': pro})

@@ -59,7 +59,8 @@ def viewProductPage(request, cat):
 
 
 
-def viewSearchPage(request, ):
+def viewSearchPage(request, str ):
+    print('searching ' + str)
     cats = list(Category.objects.all())
     return render(request, 'productPage.html', {'categories': cats, 'title': 'SearchResultPage'})
 

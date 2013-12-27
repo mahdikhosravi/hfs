@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^main-page/$', 'pages.views.viewMainPage', name='mainPage'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^category/(?P<cat>\d+)$', 'pages.views.viewProductPage', name='productsPage'),
-    url(r'^search/$', 'pages.views.viewSearchPage', name='searchPage'),
+    url(r'^search/(?P<cat>(.*)?)(?P<str>)', 'pages.views.viewSearchPage', name='searchPage'),
     url(r'^management/$', 'pages.views.viewManagementPage', name='managementPage'),
 
     )

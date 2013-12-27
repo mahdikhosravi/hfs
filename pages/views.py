@@ -5,17 +5,6 @@ from django.shortcuts import render
 # Create your views here.
 from sale.models import Product, Category
 
-
-class Cat:
-    name = None
-    id = None
-    childs = []
-    parent = None
-
-    def __repr__(self):
-        return self.name
-
-
 cat1 = {'name': 'فیلم و سریال', 'id': 1}
 cat2 = {'name': 'کتاب', 'id': 2}
 cat3 = {'name': 'سینمایی', 'id': 3, 'parent': 1}

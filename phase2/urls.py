@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     url(r'^category/(?P<cat>\d+)$', 'pages.views.viewProductPage', name='productsPage' , ),
     url(r'^search/$', 'pages.views.viewSearchPage', name='searchPage'),
     url(r'^management/$', 'pages.views.viewManagementPage', name='managementPage'),
+    url(r'^transactions/$', 'pages.views.viewTransactionsPage', name='transactionsPage'),
 
     )

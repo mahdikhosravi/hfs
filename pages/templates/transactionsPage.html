@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table border="1" class="table">
+        <tr>
+            <td>نام</td>
+            <td>قیمت</td>
+            <td>تاریخ</td>
+            <td>ساعت</td>
+        </tr>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.name }}</td>
+                <td>{{ transaction.price }}</td>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </table>
+{% endblock %}

@@ -14,6 +14,18 @@ cat6 = {'name': 'رمان', 'id': 6, 'parent': 2}
 cat7 = {'name': 'تاریخی', 'id': 7, 'parent': 2}
 # cats = [cat1, cat2, cat3, cat4, cat5, cat6, cat7]
 
+pro0 = {'name': 'پورن', 'price': '۱۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
+pro1 = {'name': 'پورن', 'price': '۲۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
+pro2 = {'name': 'پورن', 'price': '۳۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
+pro3 = {'name': 'پورن', 'price': '۴۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
+pro4 = {'name': 'پورن', 'price': '۵۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
+pro5 = {'name': 'پورن', 'price': '۶۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
+products = [pro0, pro1, pro2, pro3, pro4, pro5]
+
+trans0 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans1 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans2 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans = [trans0, trans1, trans2]
 
 def viewMainPage(request):
     cats = list(Category.objects.all())

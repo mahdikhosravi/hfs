@@ -59,7 +59,8 @@ def viewProductPage(request, cat):
     else:
         return render(request, 'productPage.html', {'categories': cc, 'title': 'ProductPage'})
 
-
+def viewTransactionsPage(request):
+    return render(request, 'transactionsPage.html', {'transactions': trans,'title': 'TransactionsPage'})
 
 
 def viewSearchPage(request, ):

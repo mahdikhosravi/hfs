@@ -38,10 +38,10 @@ function recommended_popularProducts() {
 					var caption = document.createElement("div");
 					$(caption).addClass("caption");
 					caption.id = "items-data";
-					caption.innerHTML = "???: " + products[i].name + " <br/> " + "????: " + products[i].price;
+					caption.innerHTML = "نام:" + products[i].name + " <br/> " + "قیمت:" + products[i].price;
 					$(caption).appendTo($(mydiv));
 
-					$("<button class='buying btn btn-success col-md-12 col-xs-12'> ???? </button>").appendTo($(mydiv)).click(function(event) {
+					$("<button class='buying btn btn-success col-md-12 col-xs-12'> خرید </button>").appendTo($(mydiv)).click(function(event) {
 						add_remove(event.target._id, true);
 					}).get(0)._id = products[i].id;
 					// p._id = products[i].id ;

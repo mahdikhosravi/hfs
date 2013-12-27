@@ -72,8 +72,11 @@
                             {% endif %}
                         {% endfor %}
 
+                        <li>
+                            <a href="{% url 'managementPage' %}"> مدیریت</a>
+                        </li>
                         <li class="active">
-                            <a href="mainPage.html"> صفحه اصلی </a>
+                            <a href="{% url 'mainPage' %}"> صفحه اصلی </a>
                         </li>
                     </ul>
                     <!-- /categories -->

@@ -60,7 +60,8 @@ def viewProductPage(request, cat):
         return render(request, 'productPage.html', {'categories': cc, 'title': 'ProductPage'})
 
 def viewTransactionsPage(request):
-    return render(request, 'transactionsPage.html', {'transactions': trans,'title': 'TransactionsPage'})
+    cats = list(Category.objects.all())
+    return render(request, 'transactionsPage.html', {'categories': cats, 'transactions': trans,'title': 'TransactionsPage'})
 
 
 def viewSearchPage(request, ):

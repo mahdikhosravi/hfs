@@ -22,16 +22,22 @@ pro4 = {'name': 'پورن', 'price': '۵۰۰۰', 'imgurl': 'ede nadaram', 'url':
 pro5 = {'name': 'پورن', 'price': '۶۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
 products = [pro0, pro1, pro2, pro3, pro4, pro5]
 
+trans0 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans1 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans2 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans = [trans0, trans1, trans2]
+
 
 def viewMainPage(request):
     cats = list(Category.objects.all())
     pros = list(Product.objects.all().reverse()[:12])
-    return render(request, 'mainPage.html', {'categories': cats, 'title': 'MainPage', 'RecommandProducts': products, 'BestProducts': products})
+    return render(request, 'mainPage.html',
+                  {'categories': cats, 'title': 'MainPage', 'RecommandProducts': products, 'BestProducts': products})
+
 
 def jsonResponse(dic):
     js = json.dumps(dic)
     return HttpResponse(js, mimetype="application/json")
-
 
 
 def viewProductPage(request, cat):
@@ -40,7 +46,7 @@ def viewProductPage(request, cat):
     myCat = Category.objects.get(id=cat)
     pros = []
     if myCat.parent_id is None: # khodesh babae
-        cats = Category.objects.all().filter(parent_id = myCat.id)
+        cats = Category.objects.all().filter(parent_id=myCat.id)
         for c in cats:
             pros = pros + list(Product.objects.all().filter(cat_id=c.id))
     else:
@@ -49,17 +55,20 @@ def viewProductPage(request, cat):
     for rr in pros:
         print(rr.name)
     if request.is_ajax():
-        return jsonResponse({'products' : pros})
+        return jsonResponse({'products': pros})
     else:
         return render(request, 'productPage.html', {'categories': cc, 'title': 'ProductPage'})
-
-
 
 
 def viewSearchPage(request, ):
     cats = list(Category.objects.all())
     return render(request, 'productPage.html', {'categories': cats, 'title': 'SearchResultPage'})
 
+
 def viewManagementPage(request):
     cats = list(Category.objects.all())
     return render(request, 'managementPage.html', {'categories': cats, 'title': 'ManagementPage'})
+
+
+def viewTransactionsPage(request):
+    return render(request, 'transactionsPage.html', {'transactions': trans,'title': 'TransactionsPage'})

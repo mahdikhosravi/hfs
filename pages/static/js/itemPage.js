@@ -29,6 +29,24 @@ $(function() {
                 console.log($("ProductPic"));
                 document.getElementById("ProductPic").src = picURL;
 
+//                comments --> ye list az dictionary hayi ke 3 ta ozve tarikh, esm , nazar daran.
+                comms = data.commentList;
+                for (var i in comms) {
+//					console.log(" i = " + i);
+                    var message = comms[i].message;
+                    var name = comms[i].name;
+
+                    $("<div class='comment' dir='rtl'></div>").appendTo($("#comments"));
+                    $("<div dir='rtl'>" + name + "</div>").appendTo($("#comments").children().last());
+                    $("<div dir='rtl'>" + message + "</div>").appendTo($("#comments").children().last());
+                }
+                $("<textarea id='commentArea' class='form-control' placeholder='نظر خود را اینجا بنویسید' ></textarea>").appendTo($("#comments2"));
+                $("<button class='buying btn btn-success col-md-12 col-xs-12'>ارسال</button>").appendTo($("#comments2")).click(function(event) {
+                    addComment();
+                    $('#commentArea').val("");
+                });
+
+
             }
         }
     });

@@ -51,13 +51,18 @@ class Product(models.Model):
             picURL= self.picture.url
         )
     def as_json_detail(self):
+
+        comments = list(Opinion.objects.all().filter(product_id = self.id))
+        comments = [t.as_json() for t in comments]
+
         return dict(
             price=self.price,
             creationDate = self.creationDate.isoformat(),
             name=self.name,
             cat = self.cat.name,
             picURL= self.picture.url,
-            description = self.description
+            description = self.description,
+            commentList = comments
         )
 
  #   CREATE FULLTEXT INDEX fulltext_article_title_text
@@ -91,3 +96,10 @@ class Opinion(models.Model):
     product = models.ForeignKey(Product)
     creationDate = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=20)
+
+    def as_json(self):
+        return dict(
+            product = self.product_id ,
+            creationDate = self.creationDate.isoformat(),
+            username = self.username
+        )

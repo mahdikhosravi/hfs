@@ -1,0 +1,33 @@
+{%  extends 'baseCart.html' %}
+{% load staticfiles %}
+
+{% block script %}
+    <script src="{% static 'js/itemPage.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <!-- item info -->
+    <div class="col-xs-12 col-md-8 row">
+        <div class="row col-md-12 col-xs-12">
+            <div class="col-md-8 col-xs-8" id="info">
+                <ul id="attr_list">
+
+                </ul>
+            </div>
+
+            <div class="row col-md-4 col-xs-4" id="picture">
+                <img id= "ProductPic"  class="col-md-12 col-xs-12" data-toggle="modal" data-target="#myModal"/>
+                <button id="addItem" type="button" class="btn btn-success col-md-12 col-xs-12">
+                    انتخاب
+                </button>
+            </div>
+        </div>
+
+        <div class="row col-md-12 col-xs-12" id="comments"></div>
+        <div class="row col-md-12 col-xs-12" id="comments2"></div>
+    </div>
+    <!-- /item info -->
+
+
+
+{%  endblock %}

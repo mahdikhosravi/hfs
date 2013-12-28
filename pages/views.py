@@ -42,6 +42,20 @@ def jsonResponse(dic):
     js = json.dumps(dic)
     return HttpResponse(js, mimetype="application/json")
 
+def viewItem(request , ProID):
+    cc = list(Category.objects.all())
+    if request.is_ajax():
+        print('mikhaym ajax bargardoonim00000 ')
+        product = Product.objects.get(id=ProID)
+        print('mikhaym ajax bargardoonim11111 ')
+        t = product.as_json_detail()
+        print(t)
+        js = json.dumps( product.as_json_detail())
+        print('mikhaym ajax bargardoonim22222 ')
+        return HttpResponse(js, mimetype="application/json")
+    else:
+        return render(request, 'itemPage.html', {'categories': cc, 'title': 'Item Page'})
+
 
 
 def viewProductPage(request, cat):
@@ -49,6 +63,7 @@ def viewProductPage(request, cat):
     print('inja oomad ba cat = ' + cat)
     if request.is_ajax():
         print('responding ajax request...')
+        myResponse = {}
         myCat = Category.objects.get(id=cat)
         pros = []
         if myCat.parent_id is None: # khodesh babae
@@ -57,28 +72,30 @@ def viewProductPage(request, cat):
                 pros = pros + list(Product.objects.all().filter(cat_id=c.id))
         else:
             pros = list(Product.objects.all().filter(cat_id=myCat.id))
-        print('pros haye nahayi ina shodan: ')
-        for rr in pros:
-            print(rr.name)
-
-        set = 3 ;
-        seti = set + 1 ;
-        print('set = ' + str(seti) )
-
 
         pageSize = int(request.GET['pageSize'])
         page = int(request.GET['page'])-1
+
+        myResponse['totalResults'] = len(pros)
+        print('total result = ' + str(len(pros)))
+        pros = pros[page * pageSize:(page + 1) * pageSize]
         print('page size === ' + str(pageSize) + "page === " + str(page))
 
-        pros = pros[page * pageSize:(page + 1) * pageSize]
-        results = [ob.as_json() for ob in pros]
+        results = [ob.as_json_general() for ob in pros]
 
-        js = json.dumps({'productList': results})
+        myResponse['productList'] = results ;
+        myResponse['result'] = 1
+
+        js = json.dumps(myResponse)
+        print('printing final values : ')
+        for p in pros:
+            print( p.name)
         return HttpResponse(js, mimetype="application/json")
-
     else:
         print('addi boode daram page render mikonam ')
         return render(request, 'productPage.html', {'categories': cc, 'title': 'ProductPage'})
+
+
 def viewTransactionsPage(request):
     cats = list(Category.objects.all())
     return render(request, 'transactionsPage.html', {'categories': cats, 'transactions': trans,'title': 'TransactionsPage'})

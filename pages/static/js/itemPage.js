@@ -1,4 +1,40 @@
 $(function() {
+
+    console.log('Java script for itemPage');
+
+//    $("<li id=page" + i + "></li>").appendTo($("#paginator"));
+    var url = "";
+    var ajaxData = {};
+
+    $.ajax({
+        url : url,
+        type : 'get',
+        dataType : 'json',
+        data : ajaxData,
+        success : function(data, status, xhr) {
+            if (data.result == 0) {
+                // Request error
+                console.log("error");
+            } else {
+
+                price = data.price ;
+                creationDate = data.creationDate ;
+                name=data.name;
+                cat = data.cat.name;
+                picURL= data.picURL;
+                description = data.description;
+                $("<li> نام: " + name + "</li>").appendTo($("#attr_list"));
+                $("<li> قیمت: " + price + "</li>").appendTo($("#attr_list"));
+                $("<li> تاریخ اضافه شدن: " + creationDate + "</li>").appendTo($("#attr_list"));
+                console.log($("ProductPic"));
+                document.getElementById("ProductPic").src = picURL;
+
+            }
+        }
+    });
+
+
+
 	id = loadPageVar('id');
 	$("#addItem").click(function(event) {
 		add_remove(id, true);
@@ -40,7 +76,7 @@ function loadComments() {
 				});
 				// .html("ksadfhaksfhaksfh");
 			}
-		},
+		}
 	});
 }
 
@@ -67,7 +103,7 @@ function addComment() {
 			} else {
 				console.log("comment added successfuly to server!");
 			}
-		},
+		}
 	});
 
 }

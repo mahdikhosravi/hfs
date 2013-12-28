@@ -1,9 +1,12 @@
+"use strict";
+
+var totalPages, pageNum, firstTime
+
 function expand(number) {
 	if (firstTime == false)
 		return;
 	firstTime = false;
 	totalPages = number;
-	console.log("console: " + number);
 	if (number == 1)
 		return;
 	$("<li id=first></li>").appendTo($("#paginator"));
@@ -26,17 +29,21 @@ function expand(number) {
 	$("#paginator").children().eq(0).addClass("disabled");
 
 	$("#paginator a").click(function(event) {
+        console.log("disbalitiy = " + $(event.target).hasClass("disabled"))
+        console.log($(event.target).parent())
+
+        if ($(event.target).parent().hasClass("disabled"))
+            return ;
 		var f = $(event.target).html();
-		console.log(f);
 		if (f == "»") {
 			pageNum = pageNum + 1;
 			showPage(pageNum);
-		} else if (f == "«") {
-			pageNum = pageNum - 1;
-			showPage(pageNum);
-		} else {
-			pageNum = f;
-			showPage(f);
+        } else if (f == "«") {
+            pageNum = pageNum - 1;
+            showPage(pageNum);
+        } else {
+            pageNum = +f;
+            showPage(+f);
 		}
 	});
 	//	$("<li ></li>").appendTo($("#paginator"));
@@ -62,6 +69,8 @@ function showPage(num) {
 
 function browse(page) {
 	pageNum = page;
+    console.log("khar", page, typeof page);
+
 	var url = ""; //http://webproject.roohy.me/ajax/1/89102674/product/list
 	var ajaxData = {
 
@@ -82,36 +91,25 @@ function browse(page) {
 			} else {
 				console.log("successssssssssssssssssssss");
 				var products = data.productList;
-                console.log("in chant tast" + products.length );
-
 				if (data.totalResults > 12)
 					expand((Math.floor((data.totalResults - 1) / 12) + 1));
 				for (var i in products) {
-					ii = i + page * 12;
-					console.log(products[i].name);
-					//$("<div id=product"+i+ "></div>").appendT
 					var mydiv = document.createElement("div");
-					mydiv.id = "product" + ii;
 					$(mydiv).addClass("productDiv col-md-3 col-sm-4 col-xs-6");
 
-					image = document.createElement("image");
-					image.id = "productPic" + ii;
-					image.src = products[i].picUrl;
-					/*					$(image).appendTo($(mydiv));
-					 $(image).click(function(event){
-					 window.location = 'itemPage.html?id='+ products[i].id;
-					 })	;
-					 */
-					var result = {};
-					result.salam = "sa";
-					result.salam2 = "ka";
-					var link = document.createElement("a")
-					link.href = "itemPage.html?id=" + products[i].id;
-					///page?variable=" + parameter;
+					var image = document.createElement("image");
+					image.src = products[i].picURL;
+                    image._productID = products[i].id ;
 
-					$(image).appendTo($(link));
-					$(link).appendTo($(mydiv));
+                    var link = document.createElement("a")
+                    link.href = "../ItemPage/" + products[i].id;
+                    ///page?variable=" + parameter;
 
+                    $(image).appendTo($(link));
+                    $(link).appendTo($(mydiv));
+
+
+//                    $(image).click(function(event){showItemPage(event.target._productID)});
 					var caption = document.createElement("div");
 					$(caption).addClass("caption");
 					caption.id = "items-data";
@@ -121,7 +119,6 @@ function browse(page) {
 					$("<button class='buying btn btn-success col-md-12 col-xs-12'> خرید </button>").appendTo($(mydiv)).click(function(event) {
 						add_remove(event.target._id, true);
 					}).get(0)._id = products[i].id;
-					// p._id = products[i].id ;
 
 					$(mydiv).appendTo($("#proDiv"));
 
@@ -129,12 +126,32 @@ function browse(page) {
 
 			}
 		},
-		// ...
         error: function(data , status , xhr){
           console.log('gand khord keeeeeeee')
-        },
+        }
 	});
 
+}
+
+function showItemPage(num){
+    var url = "ItemPage/" + num ;
+    var ajaxData = {
+    };
+
+    $.ajax({
+        url : url,
+        type : 'post',
+        dataType : 'json',
+        data : ajaxData,
+        success : function(data, status, xhr) {
+            if (data.result == 0) {
+                // Request error
+                console.log("error");
+            } else {
+                alert('server javabamo dad :DDDD')
+            }
+        }
+    });
 }
 
 function showMyProducts() {
@@ -155,11 +172,11 @@ function showMyProducts() {
 			} else {
 
 				//		$("#productTable").empty();
-				pros = data.cart;
-				totalCount = pros.length;
-				totalPrice2 = 0;
+				var pros = data.cart;
+				var totalCount = pros.length;
+				var totalPrice2 = 0;
 				$("#totalAmount").html("تعداد کالاها:" + pros.length);
-				for (i in pros) {
+				for (var i in pros) {
 					totalPrice2 += pros[i].price;
 					//			console.log(pros[i].name);
 					var myDiv = document.createElement("tr");
@@ -207,10 +224,13 @@ function showMyProducts() {
 				}
 				$("#totalPrice").html("قیمت کل:" + totalPrice2);
 			}
-		},
+		}
 		// ...
 	});
 }
+
+
+var totalPrice2
 
 function add_remove(id, add_remov) {
 
@@ -235,7 +255,7 @@ function add_remove(id, add_remov) {
 			} else {
 
 			}
-		},
+		}
 		// ...
 	});
 
@@ -293,6 +313,8 @@ function add_remove(id, add_remov) {
 	}
 }
 
+var flag
+
 function getProductbyID(targetID) {
 	var url = "http://webproject.roohy.me/ajax/1/89102674/product/list";
 	var ajaxData = {
@@ -300,6 +322,7 @@ function getProductbyID(targetID) {
 		"productId" : targetID
 	};
 	flag = false;
+    var p
 	$.ajax({
 		url : url,
 		type : 'post',
@@ -315,7 +338,7 @@ function getProductbyID(targetID) {
 				flag = true;
 				console.log("here is p" + p.id + "   " + p.name);
 			}
-		},
+		}
 	});
 	console.log("trying to reach p ");
 	console.log(p.id);
@@ -335,10 +358,7 @@ function loadPageVar(sVar) {
 }
 
 $(function() {
-
 	firstTime = true;
-	category = loadPageVar('cat');
-	search = loadPageVar('search');
 	browse(1);
 	showMyProducts();
 });

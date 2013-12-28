@@ -5,6 +5,7 @@ from django.db import models
 from json import JSONEncoder
 # Create your models here.
 from django.utils import autoreload
+from phase2 import settings
 
 
 class Category(models.Model , JSONEncoder):
@@ -20,9 +21,9 @@ class Category(models.Model , JSONEncoder):
     def clean(self):
         super(Category, self).clean()
         if not self.parent is None:
-            a  = Category.objects.get(id=self.parent_id)
+            par = Category.objects.get(id=self.parent_id)
             # print('khodesh' + self.name + '  parent = ' + a.name)
-            if not a.parent is None:
+            if not par.parent is None:
                 raise ValidationError("Parent should be one of the main Categories!! ")
 
 
@@ -36,16 +37,27 @@ class Product(models.Model):
     cat = models.ForeignKey(Category)
     availability = models.BooleanField(default=True)
     count = models.IntegerField(null=True)
-    picture = models.URLField(null=True)
+    picture = models.ImageField(upload_to='Products/images' , null=True , blank=True)
+    # picture = models.URLField(null=True)
     description = models.TextField(null=True)
     purchased = models.PositiveIntegerField(default=0)
 
-    def as_json(self):
+    def as_json_general(self):
         return dict(
-            price = self.price,
-            name = self.name,
-            count = self.count,
-            picURL = self.picture
+            id = self.id ,
+            price=self.price,
+            name=self.name,
+            # picURL= settings.BASE_DIR +  self.picture.url
+            picURL= self.picture.url
+        )
+    def as_json_detail(self):
+        return dict(
+            price=self.price,
+            creationDate = self.creationDate.isoformat(),
+            name=self.name,
+            cat = self.cat.name,
+            picURL= self.picture.url,
+            description = self.description
         )
 
  #   CREATE FULLTEXT INDEX fulltext_article_title_text
@@ -60,14 +72,12 @@ class Product(models.Model):
         return self.name
 
 
-
-
-
 class SlideShowProduct(models.Model):
     product = models.ForeignKey(Product)
     bigPicture = models.URLField()
     def __str__(self):
         return self.product.name
+
 
 class Purchase(models.Model):
     date = models.DateField(auto_now_add=True)
@@ -76,3 +86,8 @@ class Purchase(models.Model):
     def __str__(self):
         return self.product.name
 
+
+class Opinion(models.Model):
+    product = models.ForeignKey(Product)
+    creationDate = models.DateTimeField(auto_now_add=True)
+    username = models.CharField(max_length=20)

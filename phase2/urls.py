@@ -15,7 +15,7 @@ urlpatterns = patterns('',
                        url(r'^category/(?P<cat>\d+)$', 'pages.views.viewProductPage', name='productsPage'),
                        url(r'^search/$', 'pages.views.viewSearchPage', name='searchPage'),
                        url(r'^management/$', 'pages.views.viewManagementPage', name='managementPage'),
-                       url(r'^ItemPage/(?P<ProID>\d+)' , 'pages.views.viewItem'),
+                       url(r'^ItemPage/(?P<ProID>\d+)' , 'pages.views.viewItem' , name='itemPage'),
                        url(r'^transactions/$', 'pages.views.viewTransactionsPage', name='transactionsPage'),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

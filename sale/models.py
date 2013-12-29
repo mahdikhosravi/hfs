@@ -79,7 +79,7 @@ class Product(models.Model):
 
 class SlideShowProduct(models.Model):
     product = models.ForeignKey(Product)
-    bigPicture = models.URLField()
+    bigPicture = models.ImageField(upload_to='Products/slideImages')
     def __str__(self):
         return self.product.name
 

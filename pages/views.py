@@ -5,7 +5,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-from sale.models import Product, Category
+from sale.models import Product, Category, SlideShowProduct
 
 cat1 = {'name': 'فیلم و سریال', 'id': 1}
 cat2 = {'name': 'کتاب', 'id': 2}
@@ -36,7 +36,15 @@ def viewMainPage(request):
     li = list(Product.objects.all())
     bestSellers = li[:6]
     ourRecom = li[6:12]
-    return render(request, 'mainPage.html', {'categories': cats, 'title': 'MainPage', 'RecommandProducts': ourRecom, 'BestProducts': bestSellers})
+    
+    slideShow = list(SlideShowProduct.objects.all()[:3] )
+
+    slideShow_urls = [  slideShow[i].bigPicture.url for i in range(3)]
+    slideShow_ids = [slideShow[i].product_id for i in range(3) ]
+
+    slideShow_info = list(zip(slideShow_urls , slideShow_ids))
+
+    return render(request, 'mainPage.html', {'categories': cats, 'title': 'MainPage', 'RecommandProducts': ourRecom, 'BestProducts': bestSellers , 'slideShowInfo' : slideShow_info})
 
 def jsonResponse(dic):
     js = json.dumps(dic)

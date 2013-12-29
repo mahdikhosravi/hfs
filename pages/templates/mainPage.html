@@ -13,15 +13,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <a href="itemPage.html"> <img src="{{ link1 }}" alt=""> <div class="carousel-caption"></div> </a>
+                    <a href="{% url 'itemPage' ProID=slideShowInfo.0.1 %}"> <img src="{{ slideShowInfo.0.0}}" alt=""> <div class="carousel-caption"></div> </a>
                 </div>
 
                 <div class="item">
-                    <a href="itemPage.html"> <img src="{{ link2 }}" alt=""> <div class="carousel-caption"></div> </a>
+                    <a href="{% url 'itemPage' ProID=slideShowInfo.1.1 %}"> <img src="{{ slideShowInfo.1.0 }}" alt=""> <div class="carousel-caption"></div> </a>
                 </div>
 
                 <div class="item">
-                    <a href="itemPage.html"> <img src="{{ link3 }}" alt=""> <div class="carousel-caption"></div> </a>
+                    <a href="{% url 'itemPage' ProID=slideShowInfo.2.1 %}"> <img src="{{ slideShowInfo.2.0 }}" alt=""> <div class="carousel-caption"></div> </a>
                 </div>
             </div>
 

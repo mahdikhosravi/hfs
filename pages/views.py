@@ -108,6 +108,24 @@ def viewTransactionsPage(request):
     cats = list(Category.objects.all())
     return render(request, 'transactionsPage.html', {'categories': cats, 'transactions': trans,'title': 'TransactionsPage'})
 
+def buyItem(request , ProID):
+    print('too in oomad!')
+    pro = Product.objects.get(id = ProID)
+    pro.purchased = pro.purchased + 1
+    pro.count = pro.count -1
+    pro.save()
+    print('after saving the product')
+    js = json.dumps( {'product' : pro.as_json_general() , 'status' : "success"})
+    print('returning status = success with product ')
+    return HttpResponse(js, mimetype="application/json")
+
+def removeItem(request , ProID):
+    print('too in oomad ke remove kone!')
+    pro = Product.objects.get(id = ProID)
+    js = json.dumps( {'status' : "success"})
+    print('returning status = success ')
+    return HttpResponse(js, mimetype="application/json")
+
 
 def viewSearchPage(request, ):
     cats = list(Category.objects.all())

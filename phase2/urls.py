@@ -17,5 +17,8 @@ urlpatterns = patterns('',
                        url(r'^management/$', 'pages.views.viewManagementPage', name='managementPage'),
                        url(r'^ItemPage/(?P<ProID>\d+)' , 'pages.views.viewItem' , name='itemPage'),
                        url(r'^transactions/$', 'pages.views.viewTransactionsPage', name='transactionsPage'),
+                       url(r'sale-management/buy/(?P<ProID>\d+)', 'pages.views.buyItem' , name='buyItem'),
+                       url(r'sale-management/remove/(?P<ProID>\d+)', 'pages.views.removeItem' , name='removeItem'),
+
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -36,7 +36,7 @@ class Product(models.Model):
     name = models.CharField(max_length=50)
     cat = models.ForeignKey(Category)
     availability = models.BooleanField(default=True)
-    count = models.IntegerField(null=True)
+    count = models.IntegerField(null=True , default=100)
     picture = models.ImageField(upload_to='Products/images' , null=True , blank=True)
     # picture = models.URLField(null=True)
     description = models.TextField(null=True)

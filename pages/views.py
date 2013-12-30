@@ -150,13 +150,16 @@ def addItem(request):
 @csrf_exempt
 def editItem(request , ProID):
     print('pro id = ' + str(ProID))
+
     if request.method == "POST":        #taraf form submit karde
+        print('request is post')
         if ProID is None:
             form = ProductForm(request.POST , request.FILES )
         else:
+            print('oomad ke az database bekhoone')
             obj = Product.objects.get(id = ProID)
             form = ProductForm(request.POST , request.FILES , instance=obj)
-            
+
         if form.is_valid():
             print('save shod') ;
             form.save()

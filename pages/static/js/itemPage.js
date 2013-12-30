@@ -1,6 +1,7 @@
 $(function() {
 
     console.log('Java script for itemPage');
+    console.log(window.location.pathname);
 
 //    $("<li id=page" + i + "></li>").appendTo($("#paginator"));
     var url = "";
@@ -23,9 +24,9 @@ $(function() {
                 cat = data.cat.name;
                 picURL= data.picURL;
                 description = data.description;
-                $("<li> نام: " + name + "</li>").appendTo($("#attr_list"));
+                $("<li> نام محصول: " + name + "</li>").appendTo($("#attr_list"));
                 $("<li> قیمت: " + price + "</li>").appendTo($("#attr_list"));
-                $("<li> تاریخ اضافه شدن: " + creationDate + "</li>").appendTo($("#attr_list"));
+                $("<li> تاریخ اضافه شدن محصول: " + creationDate + "</li>").appendTo($("#attr_list"));
                 console.log($("ProductPic"));
                 document.getElementById("ProductPic").src = picURL;
 
@@ -41,8 +42,8 @@ $(function() {
                     $("<div dir='rtl'>" + name + "</div>").appendTo($("#comments").children().last());
                     $("<div dir='rtl'>" + message + "</div>").appendTo($("#comments").children().last());
                 }
-                $("<textarea id='commentArea' class='form-control' placeholder='نظر خود را اینجا بنویسید' ></textarea>").appendTo($("#comments2"));
-                $("<button class='buying btn btn-success col-md-12 col-xs-12'>ارسال</button>").appendTo($("#comments2")).click(function(event) {
+                $("<textarea id='commentArea' class='form-control' placeholder='نظر خود را وارد کنید ' ></textarea>").appendTo($("#comments2"));
+                $("<button class='buying btn btn-success col-md-12 col-xs-12'>ارسال نظر</button>").appendTo($("#comments2")).click(function(event) {
                     addComment();
                     $('#commentArea').val("");
                 });
@@ -52,9 +53,14 @@ $(function() {
         }
     });
 
+
+
+
 	$("#addItem").click(function(event) {
 		add_remove(event.target._id, true);
 	});
+
+    $("#editItemButtonLink").attr('href' ,window.location.pathname + "editItem");
 
 });
 

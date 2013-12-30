@@ -29,6 +29,7 @@ $(function() {
                 $("<li> تاریخ اضافه شدن محصول: " + creationDate + "</li>").appendTo($("#attr_list"));
                 console.log($("ProductPic"));
                 document.getElementById("ProductPic").src = picURL;
+                document.getElementById("ModalImage").src = picURL;
 
 //                comments --> ye list az dictionary hayi ke 3 ta ozve tarikh, esm , nazar daran.
                 comms = data.commentList;

@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% block script %}
+    <script src="{% static 'js/editDetailPage.js' %}"></script>
+{% endblock %}
+{% comment %}
+$("#form1").ajaxForm({
+success : function(data, status, xhr) {
+picID = data.picId;
+picURL = data.picUrl;
+console.log("=========================" + picID + "   " + picURL);
+aks = document.getElementById("aks");
+aks.src = picURL;
+// alert("successssssssssssssssssssss");
+}
+});
+
+$("#form1").submit(function(e) {
+e.preventDefault();
+});
+{% endcomment %}
+
 
 {% block content %}
     <div class="row">
@@ -6,7 +27,11 @@
             <img id="aks"/>
         </div>
         <div class="col-md-6 col-xs-12 row" id="man">
-            <input type="text" placeholder="نام محصول" id="nameSelector" class="col-md-12 col-xs-12 myform" value="{{ product.name }}"/>
+            <form id="productForm" method="post" action="{% url "addItem" %}" enctype="multipart/form-data">
+                {{ form.as_p }}
+                <input type="submit" id="addPro" class="col-md-12 col-xs-12 myform btn btn-success" value="ثبت محصول"/>
+
+                {% comment %}<input type="text" placeholder="نام محصول" id="nameSelector" class="col-md-12 col-xs-12 myform" value="{{ product.name }}"/>
             <br>
             <input type="number" placeholder="قیمت محصول" id="gheymatSelector" class="col-md-12 col-xs-12 myform" value="{{ product.price }}"/>
             <br>
@@ -25,15 +50,12 @@
                 <br>
                 <textarea class="col-md-12 col-xs-12 myform text-info" placeholder="توضیحات" rows="10" dir="rtl">{{ product.others }}</textarea>
             </select>
+                <input type="submit" id="addPro" class="col-md-12 col-xs-12 myform btn btn-success" value="ثبت محصول"/>
 
-            <form id="form1" method="post" action="http://webproject.roohy.me/ajax/1/89102674/product/uploadimage">
                 <input type="file" name="image" class="col-md-12 col-xs-12 myform"/>
                 <br>
-                <input type="submit" class="col-md-12 col-xs-12 myform btn btn-primary" value="ثبت تصویر"/>
-                <br>
-                <button id="addPro" class="col-md-12 col-xs-12 myform btn btn-success">
-                    ثبت محصول
-                </button>
+
+{% endcomment %}
             </form>
         </div>
     </div>

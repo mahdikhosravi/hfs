@@ -1,3 +1,4 @@
+from encodings import undefined
 import json
 from django.core.serializers import serialize
 from django.core.serializers.json import Serializer
@@ -5,7 +6,9 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-from sale.models import Product, Category, SlideShowProduct
+from django.views.decorators.csrf import csrf_exempt
+from pages.forms import ProductForm
+from sale.models import Product, Category, SlideShowProduct, Opinion
 
 cat1 = {'name': 'فیلم و سریال', 'id': 1}
 cat2 = {'name': 'کتاب', 'id': 2}
@@ -64,6 +67,15 @@ def viewItem(request , ProID):
     else:
         return render(request, 'itemPage.html', {'categories': cc, 'title': 'Item Page'})
 
+def addComment(request, ProID):
+    print('dare comment add mikone')
+    opinion = Opinion()
+    opinion.product = Product.objects.get(id=ProID)
+    opinion.username= request.GET['name']
+    opinion.body = request.GET['message']
+    opinion.save()
+    js = json.dumps( {'status' : 'success'})
+    return HttpResponse(js, mimetype="application/json")
 
 
 def viewProductPage(request, cat):
@@ -123,14 +135,48 @@ def removeItem(request , ProID):
     print('too in oomad ke remove kone!')
     pro = Product.objects.get(id = ProID)
     js = json.dumps( {'status' : "success"})
-    print('returning status = success ')
     return HttpResponse(js, mimetype="application/json")
 
 
-def viewSearchPage(request, ):
+def viewSearchPage(request ):
     cats = list(Category.objects.all())
     return render(request, 'productPage.html', {'categories': cats, 'title': 'SearchResultPage'})
 
-def viewManagementPage(request):
-    cats = list(Category.objects.all())
-    return render(request, 'editDetailPage.html', {'categories': cats, 'title': 'ManagementPage', 'product': pro})
+@csrf_exempt
+def addItem(request):
+    return editItem(request , None)
+
+
+@csrf_exempt
+def editItem(request , ProID):
+    print('pro id = ' + str(ProID))
+    if request.method == "POST":        #taraf form submit karde
+        if ProID is None:
+            form = ProductForm(request.POST , request.FILES )
+        else:
+            obj = Product.objects.get(id = ProID)
+            form = ProductForm(request.POST , request.FILES , instance=obj)
+            
+        if form.is_valid():
+            print('save shod') ;
+            form.save()
+            js = json.dumps({'status' : "success"})
+        else:
+            print('save nashod daram error barmigardoonam ')
+            print(  form.errors)
+            js = json.dumps({'status' : "fail" , 'errors' : form.errors})
+        return HttpResponse(js,mimetype="application/json")
+
+    else:   #url esho zade ! bayad forme khali bargardoonam ba khode safe!
+        print('request is get')
+        if  ProID is None:
+            print('proId was undefiened : forme khali barmigardoonim :D ')
+            form = ProductForm()
+        else:
+            print('proid meghdar dasht : proID = ' + str(ProID))
+            obj = Product.objects.get(id = ProID)
+            form = ProductForm(instance=obj)
+
+        cats = list(Category.objects.all())
+        return render(request, 'editDetailPage.html', {'categories': cats, 'title': 'AddItem', 'form': form})
+

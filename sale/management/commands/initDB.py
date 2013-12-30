@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from sale.models import Product, Category
+from sale.models import Product, Category, SlideShowProduct
 
 
 class Command(BaseCommand):
@@ -67,3 +67,11 @@ class Command(BaseCommand):
             t = Product(name = 'myPro' + str(i) , cat = c5 , price = 1000 , picture = 'Products/images/' + str(i%10) + '.jpg')
             t.save()
 
+        sp1 = SlideShowProduct(product = p1)
+        sp1.save()
+
+        sp2 = SlideShowProduct(product = p2)
+        sp2.save()
+
+        sp3 = SlideShowProduct(product = p3 )
+        sp3.save()

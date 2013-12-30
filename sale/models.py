@@ -79,7 +79,7 @@ class Product(models.Model):
 
 class SlideShowProduct(models.Model):
     product = models.ForeignKey(Product)
-    bigPicture = models.ImageField(upload_to='Products/slideImages')
+    bigPicture = models.ImageField(upload_to='Products/slideImages' , null=True)
     def __str__(self):
         return self.product.name
 
@@ -96,10 +96,11 @@ class Opinion(models.Model):
     product = models.ForeignKey(Product)
     creationDate = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=20)
+    body = models.TextField(max_length=1000)
 
     def as_json(self):
         return dict(
-            product = self.product_id ,
+            body = self.body,
             creationDate = self.creationDate.isoformat(),
             username = self.username
         )

@@ -1,10 +1,9 @@
-$(function() {
-    totalCount = 0 ;
-    totalPrice = 0 ;
-    localStorage = {}
-   showMyProducts()
-});
+var totalPrice
+var totalCount
 
+$(function() {
+   showMyProducts();
+});
 
 function showMyProducts() {
         totalCount = 0 ;
@@ -13,27 +12,16 @@ function showMyProducts() {
             return;
 
         pros = JSON.parse(localStorage['myProducts']);
-
-        console.log(pros);
-        $("#totalAmount").html("تعداد کالاها:" + pros.length);
-
-
-        for (var i in pros){
+        for (var i in pros)
             addToCart(pros[i]);
-        }
 
-
-        $("#totalPrice").html("قیمت کل:" + totalPrice);
 }
-
-var totalPrice
-var totalCount
 
 function add_remove(proID, add_remov) {
 
     console.log("oomad ke remove ya add kone" + proID + " add= " + add_remov);
     //ye ajax mizanim be server inja ke begim mikhaym kharid konim , server ye success barmigardoone ba moshakhasate mahsoolo :D ke esmesh producte!!!
-
+    var url;
     if (add_remov)
         url = "sale-management/buy/" + proID ;
     else
@@ -60,7 +48,6 @@ function add_remove(proID, add_remov) {
                 }
             }
         }
-        // ...
     });
 }
 

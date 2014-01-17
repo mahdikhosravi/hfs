@@ -5,10 +5,7 @@ from sale.models import *
 
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = ('price', 'name', 'cat' , 'count' , 'picture' , 'availability' , 'description')
-
-
-
+    fields = ('price', 'name', 'cat', 'count', 'picture', 'availability', 'description')
 
 
 admin.site.register(Product, ProductAdmin)

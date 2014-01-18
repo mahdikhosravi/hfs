@@ -17,6 +17,11 @@
     <link href="{% static 'css/mainPage.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/productsPage.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/addPage.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/slideShow.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/cart.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/newProduct.css' %}" rel="stylesheet"/>
+    <link href="{% static 'fonts/font.css' %}" rel="stylesheet"/>
 
     <link rel="shortcut icon" href="{% static 'images/icon.ico' %}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -40,7 +45,8 @@
     <div class="container">
         <!-- navebar -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-main-navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-main-navbar-collapse">
                 <span class="sr-only dropdownIcon">Toggle navigation</span>
                 <span class="icon-bar dropdownIcon"></span>
                 <span class="icon-bar dropdownIcon"></span>
@@ -54,11 +60,13 @@
                 <!-- search -->
                 <ul class="nav navbar-nav">
 
-                    <form class="navbar-form navbar-left" role="search" action="{% url 'searchPage' %}" method="get" id="search-form">
+                    <form class="navbar-form navbar-left" role="search" action="{% url 'searchPage' %}" method="get"
+                          id="search-form">
                         <div class="input-group margin-bottom-sm" id="navbarForm">
                             <span class="input-group-addon">
                              <li class="dropdown">
-                                 <span class="dropdown-toggle" data-toggle="dropdown"><b class="fa fa-ellipsis-v" id="advanced-search-cats"></b></span>
+                                 <span class="dropdown-toggle" data-toggle="dropdown"><b class="fa fa-ellipsis-v"
+                                                                                         id="advanced-search-cats"></b></span>
                                  <ul class="dropdown-menu" id="search-dropdown">
                                      {% for cat in categories %}
                                          {% if not cat.parent %}
@@ -75,7 +83,9 @@
                              </li>
                             </span>
                             <input type="text" class="form-control" placeholder="جستجو" id="search-text" name="search">
-                            <span class="input-group-addon"><i class="fa fa-search" id="advanced-search" data-toggle="modal" data-target="#searchModal"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-search" id="advanced-search"
+                                                               data-toggle="modal"
+                                                               data-target="#searchModal"></i></span>
                         </div>
                     </form>
                 </ul>
@@ -196,5 +206,9 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<footer id="mainPageFooter">
+BabayeHamed.com - Copyright © 2013-2014 - All rights reserved.
+</footer>
 </body>
 </html>

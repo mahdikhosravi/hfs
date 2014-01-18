@@ -1,7 +1,7 @@
 {% extends "baseCart.html" %}
 
-{% block page-content %}
-    <section class="row col-xs-12 col-md-8" id="slideshow">
+{% block main-content %}
+    <section class="row col-xs-12 col-md-6">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -13,15 +13,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <a href="{% url 'itemPage' ProID=slideShowInfo.0.1 %}"> <img src="{{ slideShowInfo.0.0}}" alt=""> <div class="carousel-caption"></div> </a>
+                    <a href="{% url 'itemPage' ProID=slideShowInfo.0.1 %}"> <img class="slideShowItem" src="{{ slideShowInfo.0.0}}" alt=""> <div class="carousel-caption"></div> </a>
                 </div>
 
                 <div class="item">
-                    <a href="{% url 'itemPage' ProID=slideShowInfo.1.1 %}"> <img src="{{ slideShowInfo.1.0 }}" alt=""> <div class="carousel-caption"></div> </a>
+                    <a href="{% url 'itemPage' ProID=slideShowInfo.1.1 %}"> <img class="slideShowItem" src="{{ slideShowInfo.1.0 }}" alt=""> <div class="carousel-caption"></div> </a>
                 </div>
 
                 <div class="item">
-                    <a href="{% url 'itemPage' ProID=slideShowInfo.2.1 %}"> <img src="{{ slideShowInfo.2.0 }}" alt=""> <div class="carousel-caption"></div> </a>
+                    <a href="{% url 'itemPage' ProID=slideShowInfo.2.1 %}"> <img class="slideShowItem" src="{{ slideShowInfo.2.0 }}" alt=""> <div class="carousel-caption"></div> </a>
                 </div>
             </div>
 
@@ -30,10 +30,34 @@
             <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a>
         </div>
     </section>
+{% endblock %}
 
-    <div class="row" >
-        <div class="row col-md-12" id="recommended">
-            <h1 dir="rtl">پیشنهاد ما</h1>
+{% block page-content %}
+    <div class="row">
+        <div class="row col-md-3" id="newProduct">
+            adasdasdasd<br>
+            asdasdasd<br>
+            asdasdasda<br>
+            dadasdasd<br>
+            asdasd<br>
+            adasdasdasd<br>
+            asdasdasd<br>
+            asdasdasda<br>
+            dadasdasd<br>
+            asdasd<br>
+            adasdasdasd<br>
+            asdasdasd<br>
+            asdasdasda<br>
+            dadasdasd<br>
+            asdasd<br>
+            adasdasdasd<br>
+            asdasdasd<br>
+            asdasdasda<br>
+            dadasdasd<br>
+            asdasd<br>
+        </div>
+        <div class="row col-xs-12 col-md-9" id="recommended">
+            <h1 dir="rtl" class="title">پیشنهاد ما</h1>
             {% for product in RecommandProducts %}
                 <div class="productDiv col-md-2 col-sm-6 col-xs-6">
                     <a href="{% url 'itemPage' ProID=product.id %}" >
@@ -49,11 +73,9 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
 
-    <div class="row" >
-        <div class="row col-md-12" id="popular">
-            <h1 dir="rtl">محبوب‌ترین‌ها</h1>
+        <div class="row col-xs-12 col-md-9" id="popular">
+            <h1 dir="rtl" class="title">محبوب‌ترین‌ها</h1>
 
             {% for product in BestProducts %}
                 <div class="productDiv col-md-2 col-sm-6 col-xs-6">

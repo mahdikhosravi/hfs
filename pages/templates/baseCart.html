@@ -8,7 +8,7 @@
 
 
 {% block content %}
-    <div class="col-xs-12 col-md-4" id= "sabadContainer">
+    <div class="col-xs-12 col-md-3" id="sabadContainer">
         <div id="inf">
             <div id="totalAmount">
                 :تعداد کالاها
@@ -27,4 +27,15 @@
             </table>
         </div>
     </div>
+
+    {% block main-content %}
+    {% endblock %}
+
+    <div class="col-xs-12 col-md-3" id="sidebarProfile">
+        <img src='{{ profile.picture.url }}' id="sidebarProfilePic">
+    asdasds
+    </div>
+
+    {% block page-content %}
+    {% endblock %}
 {% endblock %}

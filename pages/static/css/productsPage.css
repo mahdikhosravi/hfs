@@ -35,27 +35,6 @@
 	text-align: center;
 }
 
-#sabad {
-	border-style: solid;
-	border-color: #f1f1f1;
-	background-color: #f8f8f8;
-	max-height: 350px;
-	overflow-y: scroll;
-}
-
-#inf {
-	text-align: right;
-	height: 55px;
-}
-
-#inf * {
-	display: inline-block;
-	width: 50%;
-	float: right;
-	border-style: solid;
-	/*margin-right: 10%;*/
-}
-
 #productTable td {
 	text-align: center;
 	/*margin-right: 20px;  */

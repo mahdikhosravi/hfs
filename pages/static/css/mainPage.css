@@ -21,6 +21,19 @@
     border-color: #FF6600;
     outline-color: #FF6600;
     background-color: #f1f1f1;
+    font-family: "WMitra",serif;
+}
+
+#recommended{
+    font-family: "WMitra", serif;
+}
+
+#popular{
+    font-family: "wmitra", serif;
+}
+
+.title{
+    font-family: "WMitra", serif;
 }
 
 header a{
@@ -80,4 +93,15 @@ input:focus{
 
 #search-form{
     width: 100% !important;
+}
+
+#mainPageFooter{
+    border-top: solid 1px !important;
+    border-color: #ff6600 !important;
+    background-color: #FFCF9E;
+    margin-top: 70px;
+    text-align: center;
+    direction: rtl;
+    height: 50px;
+    padding-top: 15px;
 }

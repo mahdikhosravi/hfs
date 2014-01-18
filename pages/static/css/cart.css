@@ -1,0 +1,23 @@
+#sabadContainer{
+    height: 40%;
+    font-family: "WMitra", serif;
+    border-color: #ff6600 !important;
+    border: solid;
+}
+
+#sabad {
+    background-color: #f1f1f1;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+#inf{
+    text-align: center;
+    height: 20%;
+}
+
+#inf * {
+    display: inline-block;
+    width: 50%;
+    float: right;
+}

@@ -1,6 +1,6 @@
 #newProduct{
     height: 100%;
     font-family: "WMitra", serif;
-    border: solid;
+    border: solid 1px;
     border-color: #ff6600 !important;
 }

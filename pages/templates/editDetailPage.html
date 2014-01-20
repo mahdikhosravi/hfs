@@ -30,32 +30,6 @@ e.preventDefault();
             <form id="productForm" method="post" action="" enctype="multipart/form-data">
                 {{ form.as_p }}
                 <input type="submit" id="addPro" class="col-md-12 col-xs-12 myform btn btn-success" value="ثبت محصول"/>
-
-                {% comment %}<input type="text" placeholder="نام محصول" id="nameSelector" class="col-md-12 col-xs-12 myform" value="{{ product.name }}"/>
-            <br>
-            <input type="number" placeholder="قیمت محصول" id="gheymatSelector" class="col-md-12 col-xs-12 myform" value="{{ product.price }}"/>
-            <br>
-            <select id="catagorySelector" class="col-md-12 col-xs-12 myform">
-                <option value="dif">
-                    دسته‌بندی
-                </option>
-
-                {% for category in categories %}
-                    {% if category.parent %}
-                        <option value="{{ category.id }}" selected="{% if category.id == product.category %} selected {% endif %}">{{ category.name }}</option>
-                    {% endif %}
-                {% endfor %}
-                <br>
-                <input type="number" class="col-md-12 col-xs-12 myform" placeholder="تعداد موجودی"  value="{{ product.number }}">
-                <br>
-                <textarea class="col-md-12 col-xs-12 myform text-info" placeholder="توضیحات" rows="10" dir="rtl"g>{{ product.others }}</textarea>
-            </select>
-                <input type="submit" id="addPro" class="col-md-12 col-xs-12 myform btn btn-success" value="ثبت محصول"/>
-
-                <input type="file" name="image" class="col-md-12 col-xs-12 myform"/>
-                <br>
-
-{% endcomment %}
             </form>
         </div>
     </div>

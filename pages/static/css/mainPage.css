@@ -1,107 +1,30 @@
-.row{
-	margin: 0;
+.row {
+    margin: 0;
 }
 
-#recommended div img{
-	width: 100px;
-	height: 100px;
+#recommended div img {
+    width: 100px;
+    height: 100px;
 }
 
-#popular div img{
-	width: 100px;
-	height: 100px;
+#popular div img {
+    width: 100px;
+    height: 100px;
 }
 
-#backgroundPageStyle {
-    background: #f1f1f1;
-    padding-top: 50px;
-}
-
-#navigationbar{
-    border-color: #FF6600;
-    outline-color: #FF6600;
-    background-color: #f1f1f1;
-    font-family: "WMitra",serif;
-}
-
-#recommended{
+#recommended {
     font-family: "WMitra", serif;
+    border: solid 1px;
+    border-color: #ff6600;
 }
 
-#popular{
+#popular {
     font-family: "wmitra", serif;
+    border: solid 1px;
+    border-color: #ff6600;
 }
 
-.title{
+.title {
     font-family: "WMitra", serif;
 }
 
-header a{
-    color: #000000 !important;
-    background-color: transparent !important;
-}
-
-header a:focus{
-    background-color: #ff6600 !important;
-    color: #ffffff !important;
-}
-
-header a:hover{
-    background-color: #ff6600 !important;
-    color: #ffffff !important;
-}
-
-header a:active{
-    background-color: #ff6600 !important;
-    color: #ffffff !important;
-}
-
-#brandName{
-    color: #ff6600 !important;
-}
-
-#brandName:hover{
-    color: #ffffff !important;
-    background: #ff6600 !important;
-}
-
-.dropdownIcon{
-    background-color: #ff6600 !important;
-}
-
-input:focus{
-    border-color: #ff6600 !important;
-    box-shadow: 0px 0px 2px #ff6600 inset !important;
-    outline: 0 none !important;
-}
-
-#search-text{
-    min-width: 100px !important;
-}
-
-#advanced-search{
-    cursor: hand !important;
-}
-
-#advanced-search-cats{
-    cursor: hand !important;
-}
-
-#navbarForm{
-    width: 200px !important;
-}
-
-#search-form{
-    width: 100% !important;
-}
-
-#mainPageFooter{
-    border-top: solid 1px !important;
-    border-color: #ff6600 !important;
-    background-color: #FFCF9E;
-    margin-top: 70px;
-    text-align: center;
-    direction: rtl;
-    height: 50px;
-    padding-top: 15px;
-}

@@ -135,26 +135,26 @@ function browse(page) {
 
 }
 
-function showItemPage(num){
-    var url = "ItemPage/" + num ;
-    var ajaxData = {
-    };
-
-    $.ajax({
-        url : url,
-        type : 'post',
-        dataType : 'json',
-        data : ajaxData,
-        success : function(data, status, xhr) {
-            if (data.result == 0) {
-                // Request error
-                console.log("error");
-            } else {
-                alert('server javabamo dad :DDDD')
-            }
-        }
-    });
-}
+//function showItemPage(num){
+//    var url = "ItemPage/" + num ;
+//    var ajaxData = {
+//    };
+//
+//    $.ajax({
+//        url : url,
+//        type : 'post',
+//        dataType : 'json',
+//        data : ajaxData,
+//        success : function(data, status, xhr) {
+//            if (data.result == 0) {
+//                // Request error
+//                console.log("error");
+//            } else {
+//                alert('server javabamo dad :DDDD')
+//            }
+//        }
+//    });
+//}
 
 
 

@@ -21,6 +21,8 @@
     <link href="{% static 'css/cart.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/profile.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/newProduct.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/addProduct.css' %}" rel="stylesheet"/>
     <link href="{% static 'fonts/font.css' %}" rel="stylesheet"/>
 
     <link rel="shortcut icon" href="{% static 'images/icon.ico' %}">
@@ -59,35 +61,30 @@
             <div class="collapse navbar-collapse" id="bs-main-navbar-collapse">
                 <!-- search -->
                 <ul class="nav navbar-nav">
-
-                    <form class="navbar-form navbar-left" role="search" action="{% url 'searchPage' %}" method="get"
-                          id="search-form">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle fa fa-ellipsis-v" data-toggle="dropdown" id="advanced-search-cats"></a>
+                        <ul class="dropdown-menu" id="search-dropdown">
+                            {% for cat in categories %}
+                                {% if not cat.parent %}
+                                    <li><a class="search-dropdown" href="#">{{ cat.name }}</a></li>
+                                    {% for child in categories %}
+                                        {% if child.parent_id == cat.id %}
+                                            <li><a class="search-dropdown" href="#"> {{ child.name }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <li class="divider"></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <form class="navbar-form navbar-left" role="search" action="{% url 'searchPage' %}" method="get" id="search-form">
                         <div class="input-group margin-bottom-sm" id="navbarForm">
-                            <span class="input-group-addon">
-                             <li class="dropdown">
-                                 <span class="dropdown-toggle" data-toggle="dropdown"><b class="fa fa-ellipsis-v"
-                                                                                         id="advanced-search-cats"></b></span>
-                                 <ul class="dropdown-menu" id="search-dropdown">
-                                     {% for cat in categories %}
-                                         {% if not cat.parent %}
-                                             <li><a class="search-dropdown" href="#">{{ cat.name }}</a></li>
-                                             {% for child in categories %}
-                                                 {% if child.parent == cat.id %}
-                                                     <li><a class="search-dropdown" href="#"> {{ child.name }}</a></li>
-                                                 {% endif %}
-                                             {% endfor %}
-                                             <li class="divider"></li>
-                                         {% endif %}
-                                     {% endfor %}
-                                 </ul>
-                             </li>
-                            </span>
                             <input type="text" class="form-control" placeholder="جستجو" id="search-text" name="search">
-                            <span class="input-group-addon"><i class="fa fa-search" id="advanced-search"
-                                                               data-toggle="modal"
-                                                               data-target="#searchModal"></i></span>
                         </div>
                     </form>
+                    <li>
+                        <a class="fa fa-search" id="advanced-search" data-toggle="modal" data-target="#searchModal"></a>
+                    </li>
                 </ul>
                 <!-- /search -->
                 <!-- categories -->
@@ -133,6 +130,15 @@
                     <li>
                         <a href="{% url 'mainPage' %}"> صفحه اصلی </a>
                     </li>
+
+                    <li>
+                        {# check if a user is login#}
+                        <a class="fa fa-user" id="signupin" data-toggle="modal" data-target="#signModal"></a>
+
+                    </li>
+                    <li>
+                        <a href="{% url 'profilePage' %}" class="fa fa-sign-in" id="navProfile"></a>
+                    </li>
                 </ul>
                 <!-- /categories -->
             </div>
@@ -142,14 +148,12 @@
     </div>
 </header>
 
-<div class="container">
+<div class="container" id="pageData">
     {% block content %}
-    {% endblock %}
-    {% block page-content %}
     {% endblock %}
 </div>
 
-<!-- Modal -->
+<!-- Advanced Search Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -192,12 +196,12 @@
                         {% endfor %}
                     </select>
                     <br>
-                    <input type="submit" value="جستجو" class="btn btn-info form-control">
+                    <input type="submit" value="جستجو" class="btn btn-personal form-control">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
-                    Close
+                    بستن
                 </button>
             </div>
         </div>
@@ -205,10 +209,71 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
+<!-- /Advanced Search Modal -->
 
+<!-- Signup/in Modal -->
+<div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="signModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="signModalLabel">ورود / ثبت نام</h4>
+            </div>
+            <div class="modal-body signModalDiv">
+                <div class="col-md-6">
+                <!--............................insert data hear.............-->
+                     <form method="post" action="#" dir="rtl" class="form-group" role="form">
+                    <label class="form-group">
+                        نام:
+                    </label>
+                    <input type="text" name="name" class="form-control">
+                    <label class="form-group">
+                        پست الکترونیک:
+                    </label>
+                    <input type="email" name="email" class="form-control">
+                    <label class="form-group">
+                        رمز عبور:
+                    </label>
+                    <input type="password" name="pass" class="form-control">
+                    <label class="form-group">
+                        تکرار رمز عبور:
+                    </label>
+                    <input type="password" name="repass" class="form-control">
+                    <br>
+                    <input type="submit" value="ثبت نام" class="btn btn-personal form-control">
+                </form>
+                </div>
+
+                <div class="col-md-6">
+                    <form method="post" action="#" dir="rtl" class="form-group" role="form">
+                        <label class="form-group">
+                            پست الکترونیک:
+                        </label>
+                        <input type="email" name="email" class="form-control">
+                        <label class="form-group">
+                            رمز عبور:
+                        </label>
+                        <input type="password" name="pass" class="form-control">
+                        <br>
+                        <input type="submit" value="ورود" class="btn btn-personal form-control">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    بستن
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /Signup/in Modal -->
 <footer id="mainPageFooter">
-BabayeHamed.com - Copyright © 2013-2014 - All rights reserved.
+    BabayeHamed.com - Copyright © 2013-2014 - All rights reserved.
 </footer>
 </body>
 </html>

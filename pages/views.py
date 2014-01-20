@@ -24,10 +24,10 @@ from sale.models import Product, Category, SlideShowProduct, Opinion
 # pro5 = {'name': 'پورن', 'price': '۶۰۰۰', 'imgurl': 'ede nadaram', 'url': 'ede nadaram 2'};
 # products = [pro0, pro1, pro2, pro3, pro4, pro5]
 #
-# trans0 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
-# trans1 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
-# trans2 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
-# trans = [trans0, trans1, trans2]
+trans0 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans1 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans2 = {'name': 'محصول اول', 'price': '۱۰۰۰', 'date': '1-1-1', 'time': '۱۴:۰۵'}
+trans = [trans0, trans1, trans2]
 #
 # pro = {'name': 'محصول فرضی', 'price': '1000', 'time': '2013-10-09T15:38:00', 'category': '3', 'number': '10', 'others': 'چی بگم دیگه؟'}
 
@@ -181,4 +181,5 @@ def editItem(request , ProID):
         return render(request, 'editDetailPage.html', {'categories': cats, 'title': 'AddItem', 'form': form})
 
 def profilePage(request):
-    return render(request, 'profilePage.html')
+    cats = list(Category.objects.all())
+    return render(request, 'profilePage.html', {'categories': cats, 'title': 'ProfilePage'})

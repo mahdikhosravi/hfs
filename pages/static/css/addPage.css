@@ -3,9 +3,8 @@
 }
 
 #man {
-	border: solid;
-	background-color: #f8f8f8;
-	border-color: #F1F1F1;
+	border: solid 1px #ff6600;
+	background-color: #f1f1f1;
 	text-align: center;
 }
 

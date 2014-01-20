@@ -23,6 +23,7 @@
     <link href="{% static 'css/newProduct.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/base.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/addProduct.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/editDetail.css' %}" rel="stylesheet"/>
     <link href="{% static 'fonts/font.css' %}" rel="stylesheet"/>
 
     <link rel="shortcut icon" href="{% static 'images/icon.ico' %}">
@@ -133,11 +134,11 @@
 
                     <li>
                         {# check if a user is login#}
-                        <a class="fa fa-user" id="signupin" data-toggle="modal" data-target="#signModal"></a>
+                        <a class="fa fa-sign-in" id="signupin" data-toggle="modal" data-target="#signModal"></a>
 
                     </li>
                     <li>
-                        <a href="{% url 'profilePage' %}" class="fa fa-sign-in" id="navProfile"></a>
+                        <a href="{% url 'profilePage' %}" class="fa fa-user" id="navProfile"></a>
                     </li>
                 </ul>
                 <!-- /categories -->

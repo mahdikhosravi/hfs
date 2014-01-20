@@ -1,0 +1,30 @@
+#id_name{
+    width: 70%;
+}
+
+#id_price{
+    width: 70%;
+}
+
+#id_description{
+    width: 70%;
+    resize: none;
+}
+
+#id_picture{
+    width: 70%;
+    float: right;
+}
+
+#id_cat{
+    width: 70%;
+}
+
+#id_count{
+    width: 70%;
+}
+
+#productForm label{
+    width: 20%;
+    text-align: left;
+}
